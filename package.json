@@ -1,6 +1,6 @@
 {
   "name": "get-gists",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "download all user's gists as files",
   "main": "index.js",
   "scripts": {
