@@ -14,8 +14,7 @@ const args = require('args')
 
 // custom libs imports
 const github = require('./lib/github.js')
-
-//const gitInfo = gitConfig.sync()
+const download = require('./lib/download.js')
 
 args
   .option(['t', 'token'], 'Github token')
@@ -43,6 +42,19 @@ const start = token => {
     .then((user) => {
       console.log(user)
       tokenSpn.succeed()
+      const gistsSpn = ora(`[1/2] Fetching ${user.login}'s gists`).start()
+      github.gists().then((gists) => {
+        gistsSpn.succeed()
+        const downloadSpn = ora(`[2/2] Downloading gists into ${chalk.green(`${user.login}-gists`)} folder`).start()
+        _.forEach(gists, (gist) => {
+          const files = gist.files
+          _.forIn(files, (value) => {
+            download(value.raw_url, { directory: `${user.login}-gists`, filename: value.filename })
+          })
+        })
+        downloadSpn.succeed()
+        console.log(chalk.green(`Done! ${emoji.get(':rocket:')}`))
+      })
     })
   }, 0)
 }
