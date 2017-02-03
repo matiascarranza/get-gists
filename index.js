@@ -8,7 +8,6 @@ const inquirer = require('inquirer')
 const chalk = require('chalk')
 const emoji = require('node-emoji')
 const ora = require('ora')
-//const gitConfig = require('git-config')
 const _ = require('lodash')
 const args = require('args')
 
@@ -29,7 +28,7 @@ const flags = args.parse(process.argv)
 
 const tokenSpn = ora('Connecting to github')
 
-const start = token => {
+const start = (token) => {
   tokenSpn.start()
   github.authToken(token)
 
@@ -40,7 +39,6 @@ const start = token => {
       console.log(chalk.red(`Something went wrong -> ${err}`))
     })
     .then((user) => {
-      console.log(user)
       tokenSpn.succeed()
       const gistsSpn = ora(`[1/2] Fetching ${user.login}'s gists`).start()
       github.gists().then((gists) => {
@@ -54,6 +52,7 @@ const start = token => {
         })
         downloadSpn.succeed()
         console.log(chalk.green(`Done! ${emoji.get(':rocket:')}`))
+        process.exit(0)
       })
     })
   }, 0)
