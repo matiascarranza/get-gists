@@ -1,0 +1,52 @@
+{
+  "name": "get-gists",
+  "version": "1.0.0",
+  "description": "download all user's gists as files",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo"
+  },
+  "xo": {
+    "extends": "airbnb/base",
+    "esnext": true,
+    "space": true,
+    "semicolon": false,
+    "rules": {
+      "import/no-dynamic-require": 0,
+      "import/no-unresolved": 0,
+      "import/no-unassigned-import": 0,
+      "unicorn/no-process-exit": 0,
+      "camelcase": 0,
+      "comma-dangle": [
+        "error",
+        "only-multiline"
+      ]
+    }
+  },
+  "bin": {
+    "getGists": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matiascarranza/get-gists.git"
+  },
+  "keywords": [
+    "gists",
+    "download"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matiascarranza/get-gists/issues"
+  },
+  "homepage": "https://github.com/matiascarranza/get-gists#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^1.2.0",
+    "eslint-config-airbnb": "^14.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
